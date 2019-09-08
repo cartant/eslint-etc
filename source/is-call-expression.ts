@@ -3,7 +3,8 @@
  * can be found in the LICENSE file at https://github.com/cartant/eslint-etc
  */
 
-export * from "./get-loc";
-export * from "./get-parent";
-export * from "./get-parser-services";
-export * from "./is-call-expression";
+import * as es from "estree";
+
+export function isCallExpression(node: es.Node): node is es.CallExpression {
+  return node.type === "CallExpression";
+}

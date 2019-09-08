@@ -3,7 +3,8 @@
  * can be found in the LICENSE file at https://github.com/cartant/eslint-etc
  */
 
-export * from "./get-loc";
-export * from "./get-parent";
-export * from "./get-parser-services";
-export * from "./is-call-expression";
+import * as es from "estree";
+
+export function getParent(node: es.Node): es.Node | undefined {
+  return (node as any).parent;
+}

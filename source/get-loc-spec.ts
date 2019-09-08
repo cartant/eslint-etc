@@ -3,7 +3,6 @@
  * can be found in the LICENSE file at https://github.com/cartant/eslint-etc
  */
 
-export * from "./get-loc";
-export * from "./get-parent";
-export * from "./get-parser-services";
-export * from "./is-call-expression";
+describe("getLoc", () => {
+  it("should be tested ... but how?", () => {});
+});
