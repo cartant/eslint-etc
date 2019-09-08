@@ -4,7 +4,7 @@
     "url": "https://github.com/cartant/eslint-etc/issues"
   },
   "dependencies": {},
-  "description": "Utils for ESLint rules",
+  "description": "Utils for ESLint TypeScript rules",
   "devDependencies": {
     "@cartant/tslint-config": "^2.0.0",
     "@cartant/tslint-config-etc": "^2.0.0",
