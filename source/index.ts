@@ -7,4 +7,4 @@ export * from "./create-rule-tester";
 export * from "./get-loc";
 export * from "./get-parent";
 export * from "./get-parser-services";
-export * from "./is-call-expression";
+export * from "./is";
