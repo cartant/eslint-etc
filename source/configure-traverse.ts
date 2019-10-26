@@ -8,7 +8,7 @@ import { visitorKeys as VisitorKeys } from "@typescript-eslint/parser/dist/visit
 
 type Options = {
   Syntax: Record<string, string>;
-  VisitorKeys: Record<string, string[]>;
+  VisitorKeys: Record<string, readonly string[] | undefined>;
 };
 
 export function configureTraverse(
