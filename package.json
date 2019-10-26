@@ -3,7 +3,9 @@
   "bugs": {
     "url": "https://github.com/cartant/eslint-etc/issues"
   },
-  "dependencies": {},
+  "dependencies": {
+    "esquery": "^1.0.1"
+  },
   "description": "Utils for ESLint TypeScript rules",
   "devDependencies": {
     "@cartant/tslint-config": "^2.0.0",
@@ -17,7 +19,6 @@
     "chai": "^4.0.0",
     "cpy-cli": "^2.0.0",
     "eslint": "^6.3.0",
-    "esquery": "^1.0.1",
     "husky": "^3.0.5",
     "lint-staged": "^9.0.5",
     "mkdirp": "^0.5.1",
@@ -54,8 +55,7 @@
   "optionalDependencies": {},
   "peerDependencies": {
     "@typescript-eslint/parser": "^2.5.0",
-    "eslint": "^6.0.0",
-    "esquery": "^1.0.1"
+    "eslint": "^6.0.0"
   },
   "private": true,
   "publishConfig": {
