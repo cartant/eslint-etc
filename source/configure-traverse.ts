@@ -4,7 +4,7 @@
  */
 
 import { Syntax } from "@typescript-eslint/parser";
-import { visitorKeys as VisitorKeys } from "@typescript-eslint/parser/dist/visitor-keys";
+import { visitorKeys as VisitorKeys } from "@typescript-eslint/typescript-estree";
 
 type Options = {
   Syntax: Record<string, string>;
