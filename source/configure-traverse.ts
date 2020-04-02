@@ -14,13 +14,13 @@ type Options = {
 export function configureTraverse(
   options: Options = {
     Syntax,
-    VisitorKeys
+    VisitorKeys,
   }
 ): Options {
   const estraverse = require("estraverse");
   const previous = {
     Syntax: { ...estraverse.Syntax },
-    VisitorKeys: { ...estraverse.VisitorKeys }
+    VisitorKeys: { ...estraverse.VisitorKeys },
   };
   Object.assign(estraverse.Syntax, options.Syntax);
   Object.assign(estraverse.VisitorKeys, options.VisitorKeys);

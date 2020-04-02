@@ -9,7 +9,7 @@ import { resolve } from "path";
 export function createRuleTester({
   filename = resolve("./tests/file.ts"),
   parser = resolve("./node_modules/@typescript-eslint/parser"),
-  project = resolve("./tests/tsconfig.json")
+  project = resolve("./tests/tsconfig.json"),
 }: {
   filename?: string;
   parser?: string;
@@ -17,7 +17,7 @@ export function createRuleTester({
 } = {}) {
   return function ruleTester({
     comments = false,
-    types
+    types,
   }: {
     comments?: boolean;
     types: boolean;
@@ -28,18 +28,18 @@ export function createRuleTester({
         comments,
         ecmaVersion: 2019,
         project: types ? project : undefined,
-        sourceType: "module"
-      }
+        sourceType: "module",
+      },
     });
     const run = tester.run;
     tester.run = (name, rule, { invalid = [], valid = [] }) =>
       run.call(tester, name, rule, {
-        invalid: invalid.map(test => ({ ...test, filename })),
-        valid: valid.map(test =>
+        invalid: invalid.map((test) => ({ ...test, filename })),
+        valid: valid.map((test) =>
           typeof test === "string"
             ? { code: test, filename }
             : { ...test, filename }
-        )
+        ),
       });
     return tester;
   };

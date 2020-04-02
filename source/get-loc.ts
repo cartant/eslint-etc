@@ -13,11 +13,11 @@ export function getLoc(node: ts.Node): es.SourceLocation {
   return {
     start: {
       line: start.line + 1,
-      column: start.character
+      column: start.character,
     },
     end: {
       line: end.line + 1,
-      column: end.character
-    }
+      column: end.character,
+    },
   };
 }
