@@ -3,8 +3,8 @@
  * can be found in the LICENSE file at https://github.com/cartant/eslint-etc
  */
 
-import { Syntax } from "@typescript-eslint/parser";
-import { visitorKeys as VisitorKeys } from "@typescript-eslint/typescript-estree";
+import { Syntax as tsSyntax } from "@typescript-eslint/parser";
+import { visitorKeys as tsVisitorKeys } from "@typescript-eslint/typescript-estree";
 
 type Options = {
   Syntax: Record<string, string>;
@@ -13,16 +13,23 @@ type Options = {
 
 export function configureTraverse(
   options: Options = {
-    Syntax,
-    VisitorKeys,
+    Syntax: tsSyntax,
+    VisitorKeys: tsVisitorKeys,
   }
 ): Options {
-  const estraverse = require("estraverse");
+  const {
+    Syntax: esSyntax,
+    VisitorKeys: esVisitorKeys,
+  } = require("estraverse");
   const previous = {
-    Syntax: { ...estraverse.Syntax },
-    VisitorKeys: { ...estraverse.VisitorKeys },
+    Syntax: Object.assign({}, esSyntax),
+    VisitorKeys: Object.assign({}, esVisitorKeys),
   };
-  Object.assign(estraverse.Syntax, options.Syntax);
-  Object.assign(estraverse.VisitorKeys, options.VisitorKeys);
+  // Mutate the object contents to handle situations in which other code
+  // already has a reference to said objects.
+  Object.keys(esSyntax).forEach((key) => delete esSyntax[key]);
+  Object.keys(esVisitorKeys).forEach((key) => delete esVisitorKeys[key]);
+  Object.assign(esSyntax, options.Syntax);
+  Object.assign(esVisitorKeys, options.VisitorKeys);
   return previous;
 }

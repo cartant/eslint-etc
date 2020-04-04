@@ -4,16 +4,13 @@
  */
 
 import esquery from "esquery";
-import { configureTraverse } from "./configure-traverse";
-
-let configured = false;
+import estraverse from "estraverse";
 
 export function query(
   ...args: Parameters<typeof esquery>
 ): ReturnType<typeof esquery> {
-  if (!configured) {
-    configureTraverse();
-    configured = true;
+  if (!estraverse.VisitorKeys["TSTypeAnnotation"]) {
+    throw new Error("estraverse not configured");
   }
   return esquery(...args);
 }
