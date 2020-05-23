@@ -3,9 +3,7 @@
   "bugs": {
     "url": "https://github.com/cartant/eslint-etc/issues"
   },
-  "dependencies": {
-    "esquery": "~1.0.1"
-  },
+  "dependencies": {},
   "description": "Utils for ESLint TypeScript rules",
   "devDependencies": {
     "@cartant/tslint-config": "^2.0.0",
