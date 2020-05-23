@@ -15,6 +15,7 @@ export function getParserServices(
 } {
   if (
     !context.parserServices ||
+    !context.parserServices.hasFullTypeInformation ||
     !context.parserServices.program ||
     !context.parserServices.esTreeNodeToTSNodeMap
   ) {
