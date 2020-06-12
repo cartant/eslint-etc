@@ -1,10 +1,10 @@
 import { expect } from "chai";
 import { stripIndent } from "common-tags";
-import { fromInvalidFixture, fromValidFixture } from "./from-fixture";
+import { fromFixture } from "./from-fixture";
 
-describe("fromInvalidFixture", () => {
+describe("fromFixture", () => {
   it("should create an invalid test with a message ID", () => {
-    const test = fromInvalidFixture(
+    const test = fromFixture(
       stripIndent`
         const name = "alice";
                      ~~~~~~~ [whoops]
@@ -24,7 +24,7 @@ describe("fromInvalidFixture", () => {
   });
 
   it("should create an invalid test with a message", () => {
-    const test = fromInvalidFixture(
+    const test = fromFixture(
       stripIndent`
         const name = "alice";
                      ~~~~~~~ [1]
@@ -45,7 +45,7 @@ describe("fromInvalidFixture", () => {
   });
 
   it("should create an invalid test with options", () => {
-    const test = fromInvalidFixture(
+    const test = fromFixture(
       stripIndent`
         const name = "alice";
                      ~~~~~~~ [whoops]
@@ -74,7 +74,7 @@ describe("fromInvalidFixture", () => {
   });
 
   it("should create an invalid test with multiple errors", () => {
-    const test = fromInvalidFixture(
+    const test = fromFixture(
       stripIndent`
         const name = "alice";
                      ~~~~~~~ [first]
@@ -114,29 +114,5 @@ describe("fromInvalidFixture", () => {
         messageId: "third",
       },
     ]);
-  });
-});
-
-describe("fromValidFixture", () => {
-  it("should create a valid valid test", () => {
-    const test = fromValidFixture(
-      stripIndent`
-        const name = "alice";
-      `
-    );
-    expect(test).to.have.property("code", `const name = "alice";`);
-  });
-
-  it("should create a valid test with options", () => {
-    const test = fromValidFixture(
-      stripIndent`
-        const name = "alice";
-      `,
-      {
-        filename: "test.ts",
-      }
-    );
-    expect(test).to.have.property("code", `const name = "alice";`);
-    expect(test).to.have.property("filename", "test.ts");
   });
 });

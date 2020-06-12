@@ -1,20 +1,6 @@
 import { RuleTester } from "eslint";
 
-export function fromValidFixture(
-  fixture: string,
-  options: Omit<RuleTester.ValidTestCase, "code"> = {}
-): RuleTester.ValidTestCase {
-  const { code, errors } = parseFixture(fixture, {});
-  if (errors.length) {
-    throw new Error("Unexpected errors in valid fixture.");
-  }
-  return {
-    ...options,
-    code,
-  };
-}
-
-export function fromInvalidFixture(
+export function fromFixture(
   fixture: string,
   messages: Record<string | number, string> = {},
   options: Omit<RuleTester.InvalidTestCase, "code" | "errors"> = {}
