@@ -6,7 +6,7 @@ export function fromValidFixture(
 ): RuleTester.ValidTestCase {
   const { code, errors } = parseFixture(fixture, {});
   if (errors.length) {
-    throw new Error("Unexpected errors in fixture.");
+    throw new Error("Unexpected errors in valid fixture.");
   }
   return {
     ...options,
@@ -19,11 +19,9 @@ export function fromInvalidFixture(
   messages: Record<string | number, string> = {},
   options: Omit<RuleTester.InvalidTestCase, "code" | "errors"> = {}
 ): RuleTester.InvalidTestCase {
-  const { code, errors } = parseFixture(fixture, messages);
   return {
     ...options,
-    code,
-    errors,
+    ...parseFixture(fixture, messages),
   };
 }
 
