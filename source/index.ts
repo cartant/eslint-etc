@@ -4,6 +4,7 @@
  */
 
 export * from "./create-rule-tester";
+export * from "./from-fixture";
 export * from "./get-loc";
 export * from "./get-parent";
 export * from "./get-parser-services";
