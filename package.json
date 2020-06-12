@@ -8,7 +8,7 @@
   "devDependencies": {
     "@cartant/eslint-config": "^1.0.0",
     "@types/chai": "^4.0.0",
-    "@types/eslint": "^6.1.1",
+    "@types/eslint": "^7.0.0",
     "@types/esprima": "^4.0.2",
     "@types/estree": "^0.0.44",
     "@types/mocha": "^7.0.0",
