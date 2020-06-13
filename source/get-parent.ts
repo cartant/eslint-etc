@@ -3,7 +3,7 @@
  * can be found in the LICENSE file at https://github.com/cartant/eslint-etc
  */
 
-import * as es from "estree";
+import { TSESTree as es } from "@typescript-eslint/experimental-utils";
 
 export function getParent(node: es.Node): es.Node | undefined {
   return (node as any).parent;

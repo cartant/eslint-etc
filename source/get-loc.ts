@@ -4,7 +4,7 @@
  */
 /* eslint sort-keys: "off" */
 
-import * as es from "estree";
+import { TSESTree as es } from "@typescript-eslint/experimental-utils";
 import * as ts from "typescript";
 
 export function getLoc(node: ts.Node): es.SourceLocation {
