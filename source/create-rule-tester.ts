@@ -3,7 +3,7 @@
  * can be found in the LICENSE file at https://github.com/cartant/eslint-etc
  */
 
-import { RuleTester } from "eslint";
+import { TSESLint as eslint } from "@typescript-eslint/experimental-utils";
 import { resolve } from "path";
 
 export function createRuleTester({
@@ -22,14 +22,15 @@ export function createRuleTester({
     comments?: boolean;
     types: boolean;
   }) {
-    const tester = new RuleTester({
+    const parserOptions = {
+      comments,
+      ecmaVersion: 2019,
+      project: types ? project : undefined,
+      sourceType: "module",
+    } as const;
+    const tester = new eslint.RuleTester({
       parser,
-      parserOptions: {
-        comments,
-        ecmaVersion: 2019,
-        project: types ? project : undefined,
-        sourceType: "module",
-      },
+      parserOptions,
     });
     const run = tester.run;
     tester.run = (name, rule, { invalid = [], valid = [] }) =>

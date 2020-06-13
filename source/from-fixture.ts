@@ -1,30 +1,39 @@
-import { RuleTester } from "eslint";
+import { TSESLint as eslint } from "@typescript-eslint/experimental-utils";
 
-export function fromFixture(
+export function fromFixture<
+  TMessageIds extends string = string,
+  TOptions extends unknown[] = unknown[]
+>(
   fixture: string,
   messages: Record<string | number, string> = {},
-  options: Omit<RuleTester.InvalidTestCase, "code" | "errors"> = {}
-): RuleTester.InvalidTestCase {
+  options: Omit<
+    eslint.InvalidTestCase<TMessageIds, TOptions>,
+    "code" | "errors"
+  > = {}
+): eslint.InvalidTestCase<TMessageIds, TOptions> {
   return {
     ...options,
     ...parseFixture(fixture, messages),
   };
 }
 
-function parseFixture(
+function parseFixture<TMessageIds extends string>(
   fixture: string,
   messages: Record<string | number, string>
 ) {
   const errorRegExp = /^(\s*)(~+)\s*\[(\w+)\]\s*$/;
   const lines: string[] = [];
-  const errors: RuleTester.TestCaseError[] = [];
+  const errors: eslint.TestCaseError<TMessageIds>[] = [];
   fixture.split("\n").forEach((line) => {
     const match = line.match(errorRegExp);
     if (match) {
       const column = match[1].length + 1;
       const endColumn = column + match[2].length;
       const { length } = lines;
-      const error: RuleTester.TestCaseError = {
+      const error: Omit<eslint.TestCaseError<TMessageIds>, "messageId"> & {
+        message?: string;
+        messageId?: string;
+      } = {
         column,
         endColumn,
         endLine: length,
@@ -36,7 +45,7 @@ function parseFixture(
       } else {
         error.messageId = key;
       }
-      errors.push(error);
+      errors.push(error as eslint.TestCaseError<TMessageIds>);
     } else {
       lines.push(line);
     }
