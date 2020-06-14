@@ -63,8 +63,16 @@ export function isObjectExpression(node: es.Node): node is es.ObjectExpression {
   return node.type === "ObjectExpression";
 }
 
+export function isObjectPattern(node: es.Node): node is es.ObjectPattern {
+  return node.type === "ObjectPattern";
+}
+
 export function isProgram(node: es.Node): node is es.Program {
   return node.type === "Program";
+}
+
+export function isRestElement(node: es.Node): node is es.RestElement {
+  return node.type === "RestElement";
 }
 
 export function isThisExpression(node: es.Node): node is es.ThisExpression {
