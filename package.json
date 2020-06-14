@@ -4,7 +4,9 @@
     "url": "https://github.com/cartant/eslint-etc/issues"
   },
   "dependencies": {
-    "@typescript-eslint/experimental-utils": "^3.2.0"
+    "@typescript-eslint/experimental-utils": "^3.2.0",
+    "tsutils": "^3.17.1",
+    "tsutils-etc": "^1.2.2"
   },
   "description": "Utils for ESLint TypeScript rules",
   "devDependencies": {

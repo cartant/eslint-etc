@@ -3173,6 +3173,11 @@ tslib@^1.8.1, tslib@^1.9.0:
   resolved "https://registry.yarnpkg.com/tslib/-/tslib-1.13.0.tgz#c881e13cc7015894ed914862d276436fa9a47043"
   integrity sha512-i/6DQjL8Xf3be4K/E6Wgpekn5Qasl1usyw++dAA35Ue5orEn65VIxOA+YvNNl9HV3qv70T7CNwjODHZrLwvd1Q==
 
+tsutils-etc@^1.2.2:
+  version "1.2.2"
+  resolved "https://registry.yarnpkg.com/tsutils-etc/-/tsutils-etc-1.2.2.tgz#cdeeb777574a5c1b15b27658cb8424f7f7139831"
+  integrity sha512-5g2cXpD1OoVc/MLZxh5PuHXhlnYQmuRiW66e1n91j+2J/Pw5lfmVcZAghoDVBdltDXGaCjy8ZttXaX2u/MjHgg==
+
 tsutils@^3.17.1:
   version "3.17.1"
   resolved "https://registry.yarnpkg.com/tsutils/-/tsutils-3.17.1.tgz#ed719917f11ca0dee586272b2ac49e015a2dd759"
