@@ -5,6 +5,12 @@
 
 import { TSESTree as es } from "@typescript-eslint/experimental-utils";
 
+export function hasTypeAnnotation<T extends es.Node>(
+  node: T
+): node is T & { typeAnnotation: es.TSTypeAnnotation } {
+  return node.hasOwnProperty("typeAnnotation");
+}
+
 export function isArrayExpression(node: es.Node): node is es.ArrayExpression {
   return node.type === "ArrayExpression";
 }
