@@ -10,7 +10,6 @@ export function fromFixture<
   TOptions extends unknown[] = unknown[]
 >(
   fixture: string,
-  messages: Record<string | number, string> = {},
   options: Omit<
     eslint.InvalidTestCase<TMessageIds, TOptions>,
     "code" | "errors"
@@ -18,14 +17,11 @@ export function fromFixture<
 ): eslint.InvalidTestCase<TMessageIds, TOptions> {
   return {
     ...options,
-    ...parseFixture(fixture, messages),
+    ...parseFixture(fixture),
   };
 }
 
-function parseFixture<TMessageIds extends string>(
-  fixture: string,
-  messages: Record<string | number, string>
-) {
+function parseFixture<TMessageIds extends string>(fixture: string) {
   const errorRegExp = /^(\s*)(~+)\s*\[(\w+)\]\s*$/;
   const lines: string[] = [];
   const errors: eslint.TestCaseError<TMessageIds>[] = [];
@@ -45,11 +41,7 @@ function parseFixture<TMessageIds extends string>(
         line: length,
       };
       const key = match[3];
-      if (messages[key]) {
-        error.message = messages[key];
-      } else {
-        error.messageId = key;
-      }
+      error.messageId = key;
       errors.push(error as eslint.TestCaseError<TMessageIds>);
     } else {
       lines.push(line);
