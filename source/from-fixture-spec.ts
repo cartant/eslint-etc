@@ -28,34 +28,12 @@ describe("fromFixture", () => {
     ]);
   });
 
-  it("should create an invalid test with a message", () => {
-    const test = fromFixture(
-      stripIndent`
-        const name = "alice";
-                     ~~~~~~~ [1]
-      `,
-      { 1: "Whoops!" }
-    );
-    expect(test).to.have.property("code", `const name = "alice";`);
-    expect(test).to.have.property("errors");
-    expect(test.errors).to.deep.equal([
-      {
-        column: 14,
-        endColumn: 21,
-        endLine: 1,
-        line: 1,
-        message: "Whoops!",
-      },
-    ]);
-  });
-
   it("should create an invalid test with options", () => {
     const test = fromFixture(
       stripIndent`
         const name = "alice";
                      ~~~~~~~ [whoops]
       `,
-      undefined,
       {
         filename: "test.ts",
         output: stripIndent`
