@@ -40,8 +40,7 @@ function parseFixture<TMessageIds extends string>(fixture: string) {
         endLine: length,
         line: length,
       };
-      const key = match[3];
-      error.messageId = key;
+      error.messageId = match[3];
       errors.push(error as eslint.TestCaseError<TMessageIds>);
     } else {
       lines.push(line);
