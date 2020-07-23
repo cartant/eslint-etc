@@ -31,17 +31,13 @@ function parseFixture<TMessageIds extends string>(fixture: string) {
       const column = match[1].length + 1;
       const endColumn = column + match[2].length;
       const { length } = lines;
-      const error: Omit<eslint.TestCaseError<TMessageIds>, "messageId"> & {
-        message?: string;
-        messageId?: string;
-      } = {
+      errors.push({
         column,
         endColumn,
         endLine: length,
         line: length,
-      };
-      error.messageId = match[3];
-      errors.push(error as eslint.TestCaseError<TMessageIds>);
+        messageId: match[3] as TMessageIds,
+      });
     } else {
       lines.push(line);
     }
