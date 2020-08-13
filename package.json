@@ -33,7 +33,6 @@
     "ts-node": "^8.0.0",
     "typescript": "~3.9.3"
   },
-  "es2015": "./dist/esm2015/index.js",
   "homepage": "https://github.com/cartant/eslint-etc",
   "husky": {
     "hooks": {
@@ -48,15 +47,15 @@
   "lint-staged": {
     "*.{js,ts}": "prettier --write"
   },
-  "main": "./dist/index.js",
-  "module": "./dist/esm5/index.js",
+  "main": "./dist/cjs/index.js",
+  "module": "./dist/esm/index.js",
   "name": "eslint-etc",
   "optionalDependencies": {},
   "peerDependencies": {
     "@typescript-eslint/parser": "^3.0.0",
     "eslint": "^6.0.0 || ^7.0.0"
   },
-  "private": true,
+  "private": false,
   "publishConfig": {
     "tag": "latest"
   },
@@ -65,13 +64,11 @@
     "url": "https://github.com/cartant/eslint-etc.git"
   },
   "scripts": {
-    "dist": "yarn run dist:build && yarn run dist:copy",
-    "dist:build": "yarn run dist:clean && yarn run dist:build:cjs && yarn run dist:build:esm2015 && yarn run dist:build:esm5",
+    "dist": "yarn run dist:clean && yarn run dist:build",
+    "dist:build": "yarn run dist:build:cjs && yarn run dist:build:esm",
     "dist:build:cjs": "tsc -p tsconfig-dist-cjs.json",
-    "dist:build:esm2015": "tsc -p tsconfig-dist-esm2015.json",
-    "dist:build:esm5": "tsc -p tsconfig-dist-esm5.json",
+    "dist:build:esm": "tsc -p tsconfig-dist-esm.json",
     "dist:clean": "rimraf dist",
-    "dist:copy": "node scripts/pack.js && cpy CHANGELOG.md LICENSE README.md dist/",
     "lint": "eslint source/**/*.ts",
     "prettier": "prettier --write \"./{scripts,source}/**/*.{js,json,ts}\"",
     "prettier:ci": "prettier --check \"./{scripts,source}/**/*.{js,json,ts}\"",
@@ -81,6 +78,6 @@
     "test:mocha": "mocha build/**/*-spec.js",
     "test:watch": "yarn run lint && yarn run test:build && karma start"
   },
-  "types": "./dist/index.d.ts",
+  "types": "./dist/cjs/index.d.ts",
   "version": "2.0.1"
 }
