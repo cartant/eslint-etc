@@ -15,6 +15,10 @@ export function isArrayExpression(node: es.Node): node is es.ArrayExpression {
   return node.type === "ArrayExpression";
 }
 
+export function isArrayPattern(node: es.Node): node is es.ArrayPattern {
+  return node.type === "ArrayPattern";
+}
+
 export function isArrowFunctionExpression(
   node: es.Node
 ): node is es.ArrowFunctionExpression {
