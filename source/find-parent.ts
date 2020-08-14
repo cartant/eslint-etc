@@ -6,11 +6,11 @@
 import { TSESTree as es } from "@typescript-eslint/experimental-utils";
 import { getParent } from "./get-parent";
 
-type Predicate = (type: es.Node["type"]) => "break" | "continue" | "return";
+type Predicate = (type: string) => "break" | "continue" | "return";
 
 export function findParent(
   node: es.Node,
-  ...types: es.Node["type"][]
+  ...types: string[]
 ): es.Node | undefined;
 
 export function findParent(
@@ -20,7 +20,7 @@ export function findParent(
 
 export function findParent(
   node: es.Node,
-  ...args: (es.Node["type"] | Predicate)[]
+  ...args: (string | Predicate)[]
 ): es.Node | undefined {
   const [arg] = args;
   const predicate: Predicate =
