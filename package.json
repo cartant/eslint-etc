@@ -70,6 +70,7 @@
     "dist:build:esm": "tsc -p tsconfig-dist-esm.json",
     "dist:clean": "rimraf dist",
     "lint": "eslint source/**/*.ts",
+    "prepublishOnly": "yarn run test && yarn run dist",
     "prettier": "prettier --write \"./{scripts,source}/**/*.{js,json,ts}\"",
     "prettier:ci": "prettier --check \"./{scripts,source}/**/*.{js,json,ts}\"",
     "test": "yarn run lint && yarn run test:build && yarn run test:mocha",
