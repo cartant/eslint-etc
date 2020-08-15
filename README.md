@@ -13,7 +13,8 @@ I use these utils to implement and test my own ESLint rules. That's their primar
   invalid: [
     fromFixture(stripIndent`
       const name = "alice";
-            ~~~~ [whoops { "identifier": "name" }]
+            ~~~~ [foo { "identifier": "name" }]
+                   ~~~~~~~ [bar]
     `),
   ]
 }
@@ -30,10 +31,17 @@ which is equivalent to the following:
       endColumn: 11,
       line: 1,
       endLine: 1,
-      messageId: "whoops",
+      messageId: "foo",
       data: {
         identifier: "name",
       },
+    }, {
+      column: 14,
+      endColumn: 21,
+      line: 1,
+      endLine: 1,
+      messageId: "bar",
+      data: {},
     }]
   }]
 }
