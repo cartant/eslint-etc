@@ -15,6 +15,8 @@ I use these utils to implement and test my own ESLint rules. That's their primar
       const name = "alice";
             ~~~~ [foo { "identifier": "name" }]
                    ~~~~~~~ [bar]
+      const role = "cto";
+            ~~~~ [foo { "identifier": "role" }]
     `),
   ]
 }
@@ -42,6 +44,15 @@ which is equivalent to the following:
       endLine: 1,
       messageId: "bar",
       data: {},
+    }, {
+      column: 7,
+      endColumn: 11,
+      line: 2,
+      endLine: 2,
+      messageId: "foo",
+      data: {
+        identifier: "role",
+      },
     }]
   }]
 }
