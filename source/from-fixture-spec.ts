@@ -108,18 +108,18 @@ describe("fromFixture", () => {
     const test = fromFixture(
       stripIndent`
         const name = "alice";
-                     ~~~~~~~ [whoops { "identifier": "name" }]
+              ~~~~ [whoops { "identifier": "name" }]
       `
     );
     expect(test).to.have.property("code", `const name = "alice";`);
     expect(test).to.have.property("errors");
     expect(test.errors).to.deep.equal([
       {
-        column: 14,
+        column: 7,
         data: {
           identifier: "name",
         },
-        endColumn: 21,
+        endColumn: 11,
         endLine: 1,
         line: 1,
         messageId: "whoops",
@@ -132,18 +132,18 @@ describe("fromFixture", () => {
     const test = fromFixture(
       stripIndent`
         const name = "alice";
-                     ~~~~~~~ [whoops { "value": "${punctuation}" }]
+              ~~~~ [whoops { "value": "${punctuation}" }]
       `
     );
     expect(test).to.have.property("code", `const name = "alice";`);
     expect(test).to.have.property("errors");
     expect(test.errors).to.deep.equal([
       {
-        column: 14,
+        column: 7,
         data: {
           value: punctuation,
         },
-        endColumn: 21,
+        endColumn: 11,
         endLine: 1,
         line: 1,
         messageId: "whoops",
