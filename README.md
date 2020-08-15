@@ -15,7 +15,7 @@ I use these utils to implement and test my own ESLint rules. That's their primar
       const name = "alice";
             ~~~~ [foo { "identifier": "name" }]
                    ~~~~~~~ [bar]
-      const role = "cto";
+      const role = 'cto';
             ~~~~ [foo { "identifier": "role" }]
     `),
   ]
@@ -27,7 +27,8 @@ which is equivalent to the following:
 ```ts
 {
   invalid: [{
-    code: `const name = "alice";`,
+    code: `const name = "alice";
+const role = 'cto';`,
     errors: [{
       column: 7,
       endColumn: 11,
