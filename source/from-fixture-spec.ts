@@ -108,7 +108,7 @@ describe("fromFixture", () => {
     const test = fromFixture(
       stripIndent`
         const name = "alice";
-                     ~~~~~~~ [whoops { "name": "alice" }]
+                     ~~~~~~~ [whoops { "identifier": "name" }]
       `
     );
     expect(test).to.have.property("code", `const name = "alice";`);
@@ -117,7 +117,31 @@ describe("fromFixture", () => {
       {
         column: 14,
         data: {
-          name: "alice",
+          identifier: "name",
+        },
+        endColumn: 21,
+        endLine: 1,
+        line: 1,
+        messageId: "whoops",
+      },
+    ]);
+  });
+
+  it("should support data that contains punctuation", () => {
+    const punctuation = "[]{}()";
+    const test = fromFixture(
+      stripIndent`
+        const name = "alice";
+                     ~~~~~~~ [whoops { "value": "${punctuation}" }]
+      `
+    );
+    expect(test).to.have.property("code", `const name = "alice";`);
+    expect(test).to.have.property("errors");
+    expect(test.errors).to.deep.equal([
+      {
+        column: 14,
+        data: {
+          value: punctuation,
         },
         endColumn: 21,
         endLine: 1,
