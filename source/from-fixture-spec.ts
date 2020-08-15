@@ -20,6 +20,7 @@ describe("fromFixture", () => {
     expect(test.errors).to.deep.equal([
       {
         column: 14,
+        data: {},
         endColumn: 21,
         endLine: 1,
         line: 1,
@@ -46,6 +47,7 @@ describe("fromFixture", () => {
     expect(test.errors).to.deep.equal([
       {
         column: 14,
+        data: {},
         endColumn: 21,
         endLine: 1,
         line: 1,
@@ -77,6 +79,7 @@ describe("fromFixture", () => {
     expect(test.errors).to.deep.equal([
       {
         column: 14,
+        data: {},
         endColumn: 21,
         endLine: 1,
         line: 1,
@@ -84,6 +87,7 @@ describe("fromFixture", () => {
       },
       {
         column: 7,
+        data: {},
         endColumn: 11,
         endLine: 1,
         line: 1,
@@ -91,10 +95,34 @@ describe("fromFixture", () => {
       },
       {
         column: 1,
+        data: {},
         endColumn: 6,
         endLine: 2,
         line: 2,
         messageId: "third",
+      },
+    ]);
+  });
+
+  it("should create an invalid test with data", () => {
+    const test = fromFixture(
+      stripIndent`
+        const name = "alice";
+                     ~~~~~~~ [whoops { "name": "alice" }]
+      `
+    );
+    expect(test).to.have.property("code", `const name = "alice";`);
+    expect(test).to.have.property("errors");
+    expect(test.errors).to.deep.equal([
+      {
+        column: 14,
+        data: {
+          name: "alice",
+        },
+        endColumn: 21,
+        endLine: 1,
+        line: 1,
+        messageId: "whoops",
       },
     ]);
   });

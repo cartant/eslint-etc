@@ -22,7 +22,7 @@ export function fromFixture<
 }
 
 function parseFixture<TMessageIds extends string>(fixture: string) {
-  const errorRegExp = /^(\s*)(~+)\s*\[(\w+)\]\s*$/;
+  const errorRegExp = /^(\s*)(~+)\s*\[(\w+)\s*(\{[^\}]+\})?\]\s*$/;
   const lines: string[] = [];
   const errors: eslint.TestCaseError<TMessageIds>[] = [];
   fixture.split("\n").forEach((line) => {
@@ -33,6 +33,7 @@ function parseFixture<TMessageIds extends string>(fixture: string) {
       const { length } = lines;
       errors.push({
         column,
+        data: JSON.parse(match[4] || "{}"),
         endColumn,
         endLine: length,
         line: length,
