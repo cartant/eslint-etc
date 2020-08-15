@@ -17,19 +17,22 @@ export function createRuleTester({
 } = {}) {
   return function ruleTester({
     comments = false,
-    types,
+    typeScript = true,
+    types = true,
   }: {
     comments?: boolean;
-    types: boolean;
-  }) {
+    typeScript?: boolean;
+    types?: boolean;
+  } = {}) {
     const parserOptions = {
       comments,
-      ecmaVersion: 2019,
-      project: types ? project : undefined,
+      ecmaFeatures: { jsx: true },
+      ecmaVersion: 2020,
+      project: typeScript && types ? project : undefined,
       sourceType: "module",
     } as const;
     const tester = new eslint.RuleTester({
-      parser,
+      parser: typeScript ? parser : undefined!,
       parserOptions,
     });
     const run = tester.run;
