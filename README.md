@@ -25,14 +25,16 @@ which is equivalent to the following:
 {
   invalid: [{
     code: `const name = "alice";`,
-    column: 7,
-    endColumn: 11,
-    line: 1,
-    endLine: 1,
-    messageId: "whoops",
-    data: {
-      identifier: "name",
-    },
+    errors: [{
+      column: 7,
+      endColumn: 11,
+      line: 1,
+      endLine: 1,
+      messageId: "whoops",
+      data: {
+        identifier: "name",
+      },
+    }]
   }]
 }
 ```
