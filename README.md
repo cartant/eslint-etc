@@ -13,10 +13,10 @@ I use these utils to implement and test my own ESLint rules. That's their primar
   invalid: [
     fromFixture(stripIndent`
       const name = "alice";
-            ~~~~ [foo { "identifier": "name" }]
-                   ~~~~~~~ [bar]
+            ~~~~            [foo { "identifier": "name" }]
+                   ~~~~~~~  [bar]
       const role = 'cto';
-            ~~~~ [foo { "identifier": "role" }]
+            ~~~~            [foo { "identifier": "role" }]
     `),
   ]
 }
