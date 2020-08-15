@@ -9,25 +9,31 @@ I use these utils to implement and test my own ESLint rules. That's their primar
 `fromFixture` allows TSLint-like fixtures to be used to test ESlint rules. Using fixtures means that you don't have to specify lines and columns. Instead, you underline the failure locations within the fixture, like this:
 
 ```ts
-fromFixture(stripIndent`
-  const name = "alice";
-        ~~~~ [whoops { "identifier": "name" }]
-`);
+{
+  invalid: [
+    fromFixture(stripIndent`
+      const name = "alice";
+            ~~~~ [whoops { "identifier": "name" }]
+    `),
+  ]
+}
 ```
 
 which is equivalent to the following:
 
 ```ts
 {
-  code: `const name = "alice";`,
-  column: 7,
-  endColumn: 11,
-  line: 1,
-  endLine: 1,
-  messageId: "whoops",
-  data: {
-    identifier: "name",
-  },
+  invalid: [{
+    code: `const name = "alice";`,
+    column: 7,
+    endColumn: 11,
+    line: 1,
+    endLine: 1,
+    messageId: "whoops",
+    data: {
+      identifier: "name",
+    },
+  }]
 }
 ```
 
