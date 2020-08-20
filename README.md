@@ -18,6 +18,14 @@ I use these utils to implement and test my own ESLint rules. That's their primar
       const role = 'cto';
             ~~~~            [foo { "identifier": "role" }]
     `),
+    fromFixture(stripIndent`
+      const name = "alice";
+            ~~~~            [foo { "identifier": "name" }]
+      const role = 'cto';
+            ~~~~            [foo { "identifier": "role" }]
+    `, {
+      options: [{ bar: false }]
+    }),
   ]
 }
 ```
@@ -55,8 +63,35 @@ const role = 'cto';`,
         identifier: "role",
       },
     }]
+  }, {
+    code: `const name = "alice";
+const role = 'cto';`,
+    errors: [{
+      column: 7,
+      endColumn: 11,
+      line: 1,
+      endLine: 1,
+      messageId: "foo",
+      data: {
+        identifier: "name",
+      },
+    }, {
+      column: 7,
+      endColumn: 11,
+      line: 2,
+      endLine: 2,
+      messageId: "foo",
+      data: {
+        identifier: "role",
+      },
+    }],
+    options: [{
+      bar: false
+    }]
   }]
 }
 ```
 
 Specifying `data` in the fixture is optional. If it's omitted, `data` defaults to `{}`.
+
+The second, optional, argument passed to `fromFixture` can be used to pass additional test case properties - `options` and `output`, etc.

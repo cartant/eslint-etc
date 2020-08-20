@@ -10,13 +10,13 @@ export function fromFixture<
   TOptions extends unknown[] = unknown[]
 >(
   fixture: string,
-  options: Omit<
+  invalidTestCase: Omit<
     eslint.InvalidTestCase<TMessageIds, TOptions>,
     "code" | "errors"
   > = {}
 ): eslint.InvalidTestCase<TMessageIds, TOptions> {
   return {
-    ...options,
+    ...invalidTestCase,
     ...parseFixture(fixture),
   };
 }
