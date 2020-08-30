@@ -16,9 +16,9 @@ export function getTypeServices<
   TMessageIds extends string,
   TOptions extends unknown[]
 >(context: TSESLint.RuleContext<TMessageIds, Readonly<TOptions>>) {
-  const service = ESLintUtils.getParserServices(context);
-  const nodeMap = service.esTreeNodeToTSNodeMap;
-  const typeChecker = service.program.getTypeChecker();
+  const services = ESLintUtils.getParserServices(context);
+  const { esTreeNodeToTSNodeMap, program } = services;
+  const typeChecker = program.getTypeChecker();
 
   const couldBeType = (
     node: es.Node,
@@ -38,7 +38,7 @@ export function getTypeServices<
     name: string | RegExp,
     qualified?: { name: RegExp }
   ) => {
-    const tsNode = nodeMap.get(node);
+    const tsNode = esTreeNodeToTSNodeMap.get(node);
     if (
       ts.isArrowFunction(tsNode) ||
       ts.isFunctionDeclaration(tsNode) ||
@@ -60,7 +60,7 @@ export function getTypeServices<
   };
 
   const getType = (node: es.Node) => {
-    const tsNode = nodeMap.get(node);
+    const tsNode = esTreeNodeToTSNodeMap.get(node);
     return tsNode && typeChecker.getTypeAtLocation(tsNode);
   };
 
@@ -86,7 +86,6 @@ export function getTypeServices<
     getType,
     isAny: (node: es.Node) => tsutils.isAny(getType(node)),
     isReferenceType: (node: es.Node) => tsutils.isReferenceType(getType(node)),
-    nodeMap,
     typeChecker,
   };
 }
