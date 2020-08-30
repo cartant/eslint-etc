@@ -81,5 +81,5 @@
     "test:watch": "yarn run lint && yarn run test:build && karma start"
   },
   "types": "./dist/cjs/index.d.ts",
-  "version": "2.2.1"
+  "version": "3.0.0"
 }
