@@ -1,3 +1,10 @@
+<a name="3.0.2"></a>
+## [3.0.2](https://github.com/cartant/eslint-etc/compare/v3.0.1...v3.0.2) (2020-09-02)
+
+## Changes
+
+* Revert upgrade of `@typescript-eslint` dependencies. ([f407b62](https://github.com/cartant/rxjs-tslint-rules/commit/f407b62))
+
 <a name="3.0.1"></a>
 ## [3.0.1](https://github.com/cartant/eslint-etc/compare/v3.0.0...v3.0.1) (2020-09-02)
 
