@@ -1,3 +1,10 @@
+<a name="3.1.1"></a>
+## [3.1.1](https://github.com/cartant/eslint-etc/compare/v3.0.1...v3.0.2) (2020-09-02)
+
+## Changes
+
+* For what ever reason, `yarn version --patch` seemed to have bumped the minor version instead of the patch version. 🤷‍♂️ This is 3.0.2.
+
 <a name="3.0.2"></a>
 ## [3.0.2](https://github.com/cartant/eslint-etc/compare/v3.0.1...v3.0.2) (2020-09-02)
 
