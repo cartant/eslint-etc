@@ -1,5 +1,13 @@
 # eslint-etc
 
+[![GitHub License](https://img.shields.io/badge/license-MIT-blue.svg)](https://github.com/cartant/eslint-etc/blob/master/LICENSE)
+[![NPM version](https://img.shields.io/npm/v/eslint-etc.svg)](https://www.npmjs.com/package/eslint-etc)
+[![Downloads](http://img.shields.io/npm/dm/eslint-etc.svg)](https://npmjs.org/package/eslint-etc)
+[![Build status](https://img.shields.io/circleci/build/github/cartant/eslint-etc?token=43cceb8f45da20a867f4cee8b7068fdf5ceb1269)](https://app.circleci.com/pipelines/github/cartant)
+[![dependency status](https://img.shields.io/david/cartant/eslint-etc.svg)](https://david-dm.org/cartant/eslint-etc)
+[![devDependency Status](https://img.shields.io/david/dev/cartant/eslint-etc.svg)](https://david-dm.org/cartant/eslint-etc#info=devDependencies)
+[![peerDependency Status](https://img.shields.io/david/peer/cartant/eslint-etc.svg)](https://david-dm.org/cartant/eslint-etc#info=peerDependencies)
+
 More utils for use with `eslint`.
 
 I use these utils to implement and test my own ESLint rules. That's their primary purpose, so the documentation is ... light.
