@@ -32,6 +32,7 @@ export function createRuleTester({
       sourceType: "module",
     } as const;
     const tester = new eslint.RuleTester({
+      /* eslint-disable-next-line @typescript-eslint/no-non-null-assertion */
       parser: typeScript ? parser : undefined!,
       parserOptions,
     });
