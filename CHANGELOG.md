@@ -1,3 +1,10 @@
+<a name="4.0.1"></a>
+## [4.0.1](https://github.com/cartant/eslint-etc/compare/v4.0.0...v4.0.1) (2020-11-28)
+
+## Changes
+
+* Use `files` in `package.json` instead of `.npmignore`. ([1b83d0b](https://github.com/cartant/eslint-etc/commit/1b83d0b))
+
 <a name="4.0.0"></a>
 ## [4.0.0](https://github.com/cartant/eslint-etc/compare/v3.0.2...v4.0.0) (2020-09-02)
 
