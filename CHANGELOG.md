@@ -1,3 +1,14 @@
+<a name="4.0.2"></a>
+## [4.0.2](https://github.com/cartant/eslint-etc/compare/v4.0.1...v4.0.2) (2021-03-20)
+
+## Fixes
+
+* Use separate signatures for `fromFixture` to better handle no-option usage. ([3545994](https://github.com/cartant/eslint-etc/commit/3545994))
+
+## Features
+
+* Add more type guards. ([220d981](https://github.com/cartant/eslint-etc/commit/220d981))
+
 <a name="4.0.1"></a>
 ## [4.0.1](https://github.com/cartant/eslint-etc/compare/v4.0.0...v4.0.1) (2020-11-28)
 
