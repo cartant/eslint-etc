@@ -1,3 +1,10 @@
+<a name="4.0.3"></a>
+## [4.0.3](https://github.com/cartant/eslint-etc/compare/v4.0.2...v4.0.3) (2021-03-20)
+
+## Fixes
+
+* Use a separate `output`-only signature for `fromFixture`. ([0bb0bbe](https://github.com/cartant/eslint-etc/commit/0bb0bbe))
+
 <a name="4.0.2"></a>
 ## [4.0.2](https://github.com/cartant/eslint-etc/compare/v4.0.1...v4.0.2) (2021-03-20)
 
