@@ -9,6 +9,13 @@ export function fromFixture<TMessageIds extends string>(
   fixture: string
 ): eslint.InvalidTestCase<TMessageIds, never>;
 
+export function fromFixture<TMessageIds extends string>(
+  fixture: string,
+  invalidTestCase: {
+    output: string;
+  }
+): eslint.InvalidTestCase<TMessageIds, never>;
+
 export function fromFixture<
   TMessageIds extends string,
   TOptions extends unknown[]
