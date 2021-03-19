@@ -39,6 +39,12 @@ export function isCallExpression(node: es.Node): node is es.CallExpression {
   return node.type === "CallExpression";
 }
 
+export function isExportNamedDeclaration(
+  node: es.Node
+): node is es.ExportNamedDeclaration {
+  return node.type === "ExportNamedDeclaration";
+}
+
 export function isExpressionStatement(
   node: es.Node
 ): node is es.ExpressionStatement {
@@ -69,6 +75,10 @@ export function isMemberExpression(node: es.Node): node is es.MemberExpression {
   return node.type === "MemberExpression";
 }
 
+export function isNewExpression(node: es.Node): node is es.NewExpression {
+  return node.type === "NewExpression";
+}
+
 export function isObjectExpression(node: es.Node): node is es.ObjectExpression {
   return node.type === "ObjectExpression";
 }
@@ -81,12 +91,24 @@ export function isProgram(node: es.Node): node is es.Program {
   return node.type === "Program";
 }
 
+export function isProperty(node: es.Node): node is es.Property {
+  return node.type === "Property";
+}
+
 export function isRestElement(node: es.Node): node is es.RestElement {
   return node.type === "RestElement";
 }
 
 export function isThisExpression(node: es.Node): node is es.ThisExpression {
   return node.type === "ThisExpression";
+}
+
+export function isTSTypeLiteral(node: es.Node): node is es.TSTypeLiteral {
+  return node.type === "TSTypeLiteral";
+}
+
+export function isTSTypeReference(node: es.Node): node is es.TSTypeReference {
+  return node.type === "TSTypeReference";
 }
 
 export function isVariableDeclarator(
