@@ -1,3 +1,10 @@
+<a name="4.0.4"></a>
+## [4.0.4](https://github.com/cartant/eslint-etc/compare/v4.0.3...v4.0.4) (2021-03-20)
+
+## Fixes
+
+* Remove misused type parameters from `fromFixture`. ([2733425](https://github.com/cartant/eslint-etc/commit/2733425))
+
 <a name="4.0.3"></a>
 ## [4.0.3](https://github.com/cartant/eslint-etc/compare/v4.0.2...v4.0.3) (2021-03-20)
 
