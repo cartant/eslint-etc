@@ -5,16 +5,16 @@
 
 import { TSESLint as eslint } from "@typescript-eslint/experimental-utils";
 
-export function fromFixture<TMessageIds extends string>(
+export function fromFixture(
   fixture: string
-): eslint.InvalidTestCase<TMessageIds, never>;
+): eslint.InvalidTestCase<never, never>;
 
-export function fromFixture<TMessageIds extends string>(
+export function fromFixture(
   fixture: string,
   invalidTestCase: {
     output: string;
   }
-): eslint.InvalidTestCase<TMessageIds, never>;
+): eslint.InvalidTestCase<never, never>;
 
 export function fromFixture<
   TMessageIds extends string,
