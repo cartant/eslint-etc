@@ -1,3 +1,10 @@
+<a name="4.0.5"></a>
+## [4.0.5](https://github.com/cartant/eslint-etc/compare/v4.0.4...v4.0.5) (2021-04-25)
+
+## Fixes
+
+* Upgrade `tsutils-etc` dependency. ([b0dd48b](https://github.com/cartant/eslint-etc/commit/b0dd48b))
+
 <a name="4.0.4"></a>
 ## [4.0.4](https://github.com/cartant/eslint-etc/compare/v4.0.3...v4.0.4) (2021-03-20)
 
