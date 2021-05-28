@@ -38,25 +38,29 @@ export function getTypeServices<
     name: string | RegExp,
     qualified?: { name: RegExp }
   ) => {
+    let tsTypeNode: ts.Node | undefined;
     const tsNode = esTreeNodeToTSNodeMap.get(node);
     if (
       ts.isArrowFunction(tsNode) ||
       ts.isFunctionDeclaration(tsNode) ||
       ts.isMethodDeclaration(tsNode) ||
-      ts.isFunctionExpression(tsNode) ||
+      ts.isFunctionExpression(tsNode)
+    ) {
+      tsTypeNode = tsNode.type ?? tsNode.body;
+    } else if (
       ts.isCallSignatureDeclaration(tsNode) ||
       ts.isMethodSignature(tsNode)
     ) {
-      return (
-        tsNode.type &&
+      tsTypeNode = tsNode.type;
+    }
+    return Boolean(
+      tsTypeNode &&
         tsutils.couldBeType(
-          typeChecker.getTypeAtLocation(tsNode.type),
+          typeChecker.getTypeAtLocation(tsTypeNode),
           name,
           qualified ? { ...qualified, typeChecker } : undefined
         )
-      );
-    }
-    return false;
+    );
   };
 
   const getType = (node: es.Node) => {
