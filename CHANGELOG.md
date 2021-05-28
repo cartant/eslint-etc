@@ -1,3 +1,10 @@
+<a name="4.0.7"></a>
+## [4.0.7](https://github.com/cartant/eslint-etc/compare/v4.0.6...v4.0.7) (2021-05-29)
+
+## Fixes
+
+* Downlevel to ES2018. ([70eda6e](https://github.com/cartant/eslint-etc/commit/70eda6e))
+
 <a name="4.0.6"></a>
 ## [4.0.6](https://github.com/cartant/eslint-etc/compare/v4.0.5...v4.0.6) (2021-05-28)
 
