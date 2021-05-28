@@ -1,3 +1,10 @@
+<a name="4.0.6"></a>
+## [4.0.6](https://github.com/cartant/eslint-etc/compare/v4.0.5...v4.0.6) (2021-05-28)
+
+## Fixes
+
+* Use the body type in `couldReturnType` if the return type is not annotated. ([02584e7](https://github.com/cartant/eslint-etc/commit/02584e7))
+
 <a name="4.0.5"></a>
 ## [4.0.5](https://github.com/cartant/eslint-etc/compare/v4.0.4...v4.0.5) (2021-04-25)
 
