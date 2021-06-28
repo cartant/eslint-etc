@@ -1,3 +1,10 @@
+<a name="4.1.0"></a>
+## [4.1.0](https://github.com/cartant/eslint-etc/compare/v4.0.7...v4.1.0) (2021-06-28)
+
+## Features
+
+* Add `isImport`. ([f76d7f1](https://github.com/cartant/eslint-etc/commit/f76d7f1))
+
 <a name="4.0.7"></a>
 ## [4.0.7](https://github.com/cartant/eslint-etc/compare/v4.0.6...v4.0.7) (2021-05-29)
 
