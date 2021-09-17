@@ -25,6 +25,7 @@ describe("fromFixture", () => {
         endLine: 1,
         line: 1,
         messageId: "whoops",
+        suggestions: [],
       },
     ]);
   });
@@ -52,6 +53,7 @@ describe("fromFixture", () => {
         endLine: 1,
         line: 1,
         messageId: "whoops",
+        suggestions: [],
       },
     ]);
     expect(test).to.have.property("filename", "test.ts");
@@ -84,6 +86,7 @@ describe("fromFixture", () => {
         endLine: 1,
         line: 1,
         messageId: "first",
+        suggestions: [],
       },
       {
         column: 7,
@@ -92,6 +95,7 @@ describe("fromFixture", () => {
         endLine: 1,
         line: 1,
         messageId: "second",
+        suggestions: [],
       },
       {
         column: 1,
@@ -100,6 +104,7 @@ describe("fromFixture", () => {
         endLine: 2,
         line: 2,
         messageId: "third",
+        suggestions: [],
       },
     ]);
   });
@@ -123,6 +128,7 @@ describe("fromFixture", () => {
         endLine: 1,
         line: 1,
         messageId: "whoops",
+        suggestions: [],
       },
     ]);
   });
@@ -147,6 +153,181 @@ describe("fromFixture", () => {
         endLine: 1,
         line: 1,
         messageId: "whoops",
+        suggestions: [],
+      },
+    ]);
+  });
+
+  it("should create an invalid test with a suggestion", () => {
+    const test = fromFixture(
+      stripIndent`
+        const name = "alice";
+                     ~~~~~~~ [whoops]
+      `,
+      {
+        suggestions: [
+          {
+            messageId: "wat",
+            output: stripIndent`
+              const name = "bob";
+            `,
+          },
+        ],
+      }
+    );
+    expect(test).to.have.property("code", `const name = "alice";`);
+    expect(test).to.have.property("errors");
+    expect(test.errors).to.deep.equal([
+      {
+        column: 14,
+        data: {},
+        endColumn: 21,
+        endLine: 1,
+        line: 1,
+        messageId: "whoops",
+        suggestions: [
+          {
+            messageId: "wat",
+            output: stripIndent`
+              const name = "bob";
+            `,
+          },
+        ],
+      },
+    ]);
+  });
+
+  it("should create an invalid test with multiple suggestions", () => {
+    const test = fromFixture(
+      stripIndent`
+        const name = "alice";
+                     ~~~~~~~ [whoops]
+      `,
+      {
+        suggestions: [
+          {
+            messageId: "wat",
+            output: stripIndent`
+              const name = "bob";
+            `,
+          },
+          {
+            messageId: "wat",
+            output: stripIndent`
+              const name = "eve";
+            `,
+          },
+        ],
+      }
+    );
+    expect(test).to.have.property("code", `const name = "alice";`);
+    expect(test).to.have.property("errors");
+    expect(test.errors).to.deep.equal([
+      {
+        column: 14,
+        data: {},
+        endColumn: 21,
+        endLine: 1,
+        line: 1,
+        messageId: "whoops",
+        suggestions: [
+          {
+            messageId: "wat",
+            output: stripIndent`
+              const name = "bob";
+            `,
+          },
+          {
+            messageId: "wat",
+            output: stripIndent`
+              const name = "eve";
+            `,
+          },
+        ],
+      },
+    ]);
+  });
+
+  it("should create an invalid test with multiple errors with suggestions", () => {
+    const test = fromFixture(
+      stripIndent`
+        const name = "alice";
+                     ~~~~~~~ [whoops suggest 0]
+                     ~~~~~~~ [whoops { "identifier": "name" } suggest 1 2]
+                     ~~~~~~~ [whoops suggest]
+      `,
+      {
+        suggestions: [
+          {
+            messageId: "wat",
+            output: stripIndent`
+              const name = "bob";
+            `,
+          },
+          {
+            messageId: "wat",
+            output: stripIndent`
+              const name = "eve";
+            `,
+          },
+          {
+            messageId: "wat",
+            output: stripIndent`
+              const name = "mallory";
+            `,
+          },
+        ],
+      }
+    );
+    expect(test).to.have.property("code", `const name = "alice";`);
+    expect(test).to.have.property("errors");
+    expect(test.errors).to.deep.equal([
+      {
+        column: 14,
+        data: {},
+        endColumn: 21,
+        endLine: 1,
+        line: 1,
+        messageId: "whoops",
+        suggestions: [
+          {
+            messageId: "wat",
+            output: stripIndent`
+              const name = "bob";
+            `,
+          },
+        ],
+      },
+      {
+        column: 14,
+        data: { identifier: "name" },
+        endColumn: 21,
+        endLine: 1,
+        line: 1,
+        messageId: "whoops",
+        suggestions: [
+          {
+            messageId: "wat",
+            output: stripIndent`
+              const name = "eve";
+            `,
+          },
+          {
+            messageId: "wat",
+            output: stripIndent`
+              const name = "mallory";
+            `,
+          },
+        ],
+      },
+      {
+        column: 14,
+        data: {},
+        endColumn: 21,
+        endLine: 1,
+        line: 1,
+        messageId: "whoops",
+        suggestions: [],
       },
     ]);
   });
