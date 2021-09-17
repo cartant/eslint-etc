@@ -188,6 +188,7 @@ describe("fromFixture", () => {
         ],
       },
     ]);
+    expect(test).to.not.have.property("suggestions");
   });
 
   it("should create an invalid test with multiple suggestions", () => {
@@ -239,6 +240,7 @@ describe("fromFixture", () => {
         ],
       },
     ]);
+    expect(test).to.not.have.property("suggestions");
   });
 
   it("should create an invalid test with multiple errors with suggestions", () => {
@@ -322,5 +324,6 @@ describe("fromFixture", () => {
         messageId: "whoops",
       },
     ]);
+    expect(test).to.not.have.property("suggestions");
   });
 });
