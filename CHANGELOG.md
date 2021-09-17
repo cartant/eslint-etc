@@ -1,3 +1,10 @@
+<a name="4.2.4"></a>
+## [4.2.4](https://github.com/cartant/eslint-etc/compare/v4.2.3...v4.2.4) (2021-09-17)
+
+## Fixes
+
+* Don't spread `suggestions` into `options` in `fromFixture`. ([9184235](https://github.com/cartant/eslint-etc/commit/9184235))
+
 <a name="4.2.3"></a>
 ## [4.2.3](https://github.com/cartant/eslint-etc/compare/v4.2.2...v4.2.3) (2021-09-17)
 
