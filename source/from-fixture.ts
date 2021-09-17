@@ -6,29 +6,8 @@
 import { TSESLint as eslint } from "@typescript-eslint/experimental-utils";
 
 export function fromFixture<
-  TMessageIds extends string,
-  TOptions extends unknown[]
->(
-  fixture: string,
-  invalidTestCase: Omit<
-    eslint.InvalidTestCase<TMessageIds, TOptions>,
-    "code" | "errors"
-  > & {
-    suggestions?: eslint.SuggestionOutput<TMessageIds>[] | null | undefined;
-  }
-): eslint.InvalidTestCase<TMessageIds, TOptions>;
-
-export function fromFixture(
-  fixture: string,
-  invalidTestCase?: {
-    output?: string;
-    suggestions?: eslint.SuggestionOutput<string>[] | null | undefined;
-  }
-): eslint.InvalidTestCase<never, never>;
-
-export function fromFixture<
-  TMessageIds extends string,
-  TOptions extends unknown[]
+  TMessageIds extends string = string,
+  TOptions extends unknown[] = unknown[]
 >(
   fixture: string,
   invalidTestCase: Omit<
