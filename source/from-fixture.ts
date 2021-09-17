@@ -7,7 +7,7 @@ import { TSESLint as eslint } from "@typescript-eslint/experimental-utils";
 
 export function fromFixture<
   TMessageIds extends string = string,
-  TOptions extends unknown[] = unknown[]
+  TOptions extends unknown[] = never[]
 >(
   fixture: string,
   invalidTestCase: Omit<
