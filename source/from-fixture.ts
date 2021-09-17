@@ -38,9 +38,9 @@ export function fromFixture<
     suggestions?: eslint.SuggestionOutput<TMessageIds>[] | null | undefined;
   } = {}
 ): eslint.InvalidTestCase<TMessageIds, TOptions> {
-  const { suggestions } = invalidTestCase;
+  const { suggestions, ...rest } = invalidTestCase;
   return {
-    ...invalidTestCase,
+    ...rest,
     ...parseFixture(fixture, suggestions),
   };
 }
