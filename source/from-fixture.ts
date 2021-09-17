@@ -27,8 +27,8 @@ export function fromFixture<
 ): eslint.InvalidTestCase<TMessageIds, TOptions>;
 
 export function fromFixture<
-  TMessageIds extends string = string,
-  TOptions extends unknown[] = never[]
+  TMessageIds extends string,
+  TOptions extends unknown[]
 >(
   fixture: string,
   invalidTestCase: Omit<
