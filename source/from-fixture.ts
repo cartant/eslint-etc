@@ -41,28 +41,30 @@ export function fromFixture<
   const { suggestions } = invalidTestCase;
   return {
     ...invalidTestCase,
-    ...parseFixture(fixture, suggestions ?? []),
+    ...parseFixture(fixture, suggestions),
   };
 }
 
 function getSuggestions<TMessageIds extends string>(
-  suggestions: eslint.SuggestionOutput<TMessageIds>[],
+  suggestions: eslint.SuggestionOutput<TMessageIds>[] | null | undefined,
   indices: string | undefined
-): eslint.SuggestionOutput<TMessageIds>[] {
+): { suggestions?: eslint.SuggestionOutput<TMessageIds>[] } {
+  if (!suggestions || indices === "") {
+    return {};
+  }
   if (indices === undefined) {
-    return suggestions;
+    return { suggestions };
   }
-  if (indices === "") {
-    return [];
-  }
-  return indices
-    .split(/\s+/)
-    .map((index) => suggestions[Number.parseInt(index, 10)]);
+  return {
+    suggestions: indices
+      .split(/\s+/)
+      .map((index) => suggestions[Number.parseInt(index, 10)]),
+  };
 }
 
 function parseFixture<TMessageIds extends string>(
   fixture: string,
-  suggestions: eslint.SuggestionOutput<TMessageIds>[]
+  suggestions: eslint.SuggestionOutput<TMessageIds>[] | null | undefined
 ) {
   const errorRegExp =
     /^(?<indent>\s*)(?<error>~+)\s*\[(?<id>\w+)\s*(?<data>.*?)(?:\s*suggest\s*(?<indices>[\d\s]*))?\]\s*$/;
@@ -81,7 +83,7 @@ function parseFixture<TMessageIds extends string>(
         endLine: length,
         line: length,
         messageId: match.groups.id as TMessageIds,
-        suggestions: getSuggestions(suggestions, match.groups.indices?.trim()),
+        ...getSuggestions(suggestions, match.groups.indices?.trim()),
       });
     } else {
       lines.push(line);

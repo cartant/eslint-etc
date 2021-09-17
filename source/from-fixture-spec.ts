@@ -25,7 +25,6 @@ describe("fromFixture", () => {
         endLine: 1,
         line: 1,
         messageId: "whoops",
-        suggestions: [],
       },
     ]);
   });
@@ -53,7 +52,6 @@ describe("fromFixture", () => {
         endLine: 1,
         line: 1,
         messageId: "whoops",
-        suggestions: [],
       },
     ]);
     expect(test).to.have.property("filename", "test.ts");
@@ -86,7 +84,6 @@ describe("fromFixture", () => {
         endLine: 1,
         line: 1,
         messageId: "first",
-        suggestions: [],
       },
       {
         column: 7,
@@ -95,7 +92,6 @@ describe("fromFixture", () => {
         endLine: 1,
         line: 1,
         messageId: "second",
-        suggestions: [],
       },
       {
         column: 1,
@@ -104,7 +100,6 @@ describe("fromFixture", () => {
         endLine: 2,
         line: 2,
         messageId: "third",
-        suggestions: [],
       },
     ]);
   });
@@ -128,7 +123,6 @@ describe("fromFixture", () => {
         endLine: 1,
         line: 1,
         messageId: "whoops",
-        suggestions: [],
       },
     ]);
   });
@@ -153,7 +147,6 @@ describe("fromFixture", () => {
         endLine: 1,
         line: 1,
         messageId: "whoops",
-        suggestions: [],
       },
     ]);
   });
@@ -327,7 +320,6 @@ describe("fromFixture", () => {
         endLine: 1,
         line: 1,
         messageId: "whoops",
-        suggestions: [],
       },
     ]);
   });
