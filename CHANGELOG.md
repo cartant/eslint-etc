@@ -1,3 +1,10 @@
+<a name="4.2.0"></a>
+## [4.2.0](https://github.com/cartant/eslint-etc/compare/v4.1.0...v4.2.0) (2021-09-17)
+
+## Features
+
+* Add support for `suggestions` in `fromFixture`. ([fae4cb5](https://github.com/cartant/eslint-etc/commit/fae4cb5))
+
 <a name="4.1.0"></a>
 ## [4.1.0](https://github.com/cartant/eslint-etc/compare/v4.0.7...v4.1.0) (2021-06-28)
 
