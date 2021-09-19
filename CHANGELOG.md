@@ -1,3 +1,10 @@
+<a name="4.2.5"></a>
+## [4.2.5](https://github.com/cartant/eslint-etc/compare/v4.2.4...v4.2.5) (2021-09-19)
+
+## Fixes
+
+* Add `TMessageIds` to option-less `fromFixture` signature. ([11d66ad](https://github.com/cartant/eslint-etc/commit/11d66ad))
+
 <a name="4.2.4"></a>
 ## [4.2.4](https://github.com/cartant/eslint-etc/compare/v4.2.3...v4.2.4) (2021-09-17)
 
