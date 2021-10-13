@@ -9,10 +9,7 @@ export function fromFixture<TMessageIds extends string>(
   fixture: string,
   invalidTestCase?: {
     output?: string;
-    suggestions?:
-      | readonly eslint.SuggestionOutput<TMessageIds>[]
-      | null
-      | undefined;
+    suggestions?: readonly eslint.SuggestionOutput<TMessageIds>[] | null;
   }
 ): eslint.InvalidTestCase<TMessageIds, never>;
 
@@ -25,10 +22,7 @@ export function fromFixture<
     eslint.InvalidTestCase<TMessageIds, TOptions>,
     "code" | "errors"
   > & {
-    suggestions?:
-      | readonly eslint.SuggestionOutput<TMessageIds>[]
-      | null
-      | undefined;
+    suggestions?: readonly eslint.SuggestionOutput<TMessageIds>[] | null;
   }
 ): eslint.InvalidTestCase<TMessageIds, TOptions>;
 
@@ -41,10 +35,7 @@ export function fromFixture<
     eslint.InvalidTestCase<TMessageIds, TOptions>,
     "code" | "errors"
   > & {
-    suggestions?:
-      | readonly eslint.SuggestionOutput<TMessageIds>[]
-      | null
-      | undefined;
+    suggestions?: readonly eslint.SuggestionOutput<TMessageIds>[] | null;
   } = {}
 ): eslint.InvalidTestCase<TMessageIds, TOptions> {
   const { suggestions, ...rest } = invalidTestCase;
@@ -76,10 +67,7 @@ function getSuggestions<TMessageIds extends string>(
 
 function parseFixture<TMessageIds extends string>(
   fixture: string,
-  suggestions:
-    | readonly eslint.SuggestionOutput<TMessageIds>[]
-    | null
-    | undefined
+  suggestions?: readonly eslint.SuggestionOutput<TMessageIds>[] | null
 ) {
   const errorRegExp =
     /^(?<indent>\s*)(?<error>~+)\s*\[(?<id>\w+)\s*(?<data>.*?)(?:\s*suggest\s*(?<indices>[\d\s]*))?\]\s*$/;
