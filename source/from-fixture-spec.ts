@@ -272,7 +272,7 @@ describe("fromFixture", () => {
             `,
           },
         ],
-      }
+      } as const
     );
     expect(test).to.have.property("code", `const name = "alice";`);
     expect(test).to.have.property("errors");
