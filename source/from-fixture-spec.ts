@@ -251,6 +251,11 @@ describe("fromFixture", () => {
                      ~~~~~~~ [whoops { "identifier": "name" } suggest 1 2]
                      ~~~~~~~ [whoops suggest]
       `,
+      // ☝ Note that if there are multiple annotations, `suggest` needs to be
+      // specified in the fixture annotations. It's followed by the indices of
+      // the suggestions - in the `suggestions` array - that relate to the
+      // annotation. If an annotation has no suggestion, `suggest` needs to be
+      // specified without being followed by an index.
       {
         suggestions: [
           {
