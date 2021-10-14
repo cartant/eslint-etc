@@ -157,6 +157,9 @@ describe("fromFixture", () => {
         const name = "alice";
                      ~~~~~~~ [whoops]
       `,
+      // ☝ Note that if `suggest` isn't specified in the error annotation
+      // _all_ suggestions in the `suggestions` array are associated with the
+      // error.
       {
         suggestions: [
           {
@@ -197,6 +200,9 @@ describe("fromFixture", () => {
         const name = "alice";
                      ~~~~~~~ [whoops]
       `,
+      // ☝ Note that if `suggest` isn't specified in the error annotation
+      // _all_ suggestions in the `suggestions` array are associated with the
+      // error.
       {
         suggestions: [
           {
@@ -251,11 +257,11 @@ describe("fromFixture", () => {
                      ~~~~~~~ [whoops { "identifier": "name" } suggest 1 2]
                      ~~~~~~~ [whoops suggest]
       `,
-      // ☝ Note that if there are multiple annotations, `suggest` needs to be
-      // specified in the fixture annotations. It's followed by the indices of
-      // the suggestions - in the `suggestions` array - that relate to the
-      // annotation. If an annotation has no suggestion, `suggest` needs to be
-      // specified without being followed by an index.
+      // ☝ Note that if there are multiple error annotations, `suggest` needs
+      // to be specified in _every_ annotation. It's followed by the indices of
+      // the suggestions - within the `suggestions` array - that are associated
+      // with the error. If an annotation has no suggestion, `suggest` needs to
+      // be specified without being followed by an index.
       {
         suggestions: [
           {
