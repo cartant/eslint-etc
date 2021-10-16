@@ -155,11 +155,8 @@ describe("fromFixture", () => {
     const test = fromFixture(
       stripIndent`
         const name = "alice";
-                     ~~~~~~~ [whoops]
+                     ~~~~~~~ [whoops suggest]
       `,
-      // ☝ Note that if `suggest` isn't specified in the error annotation
-      // _all_ suggestions in the `suggestions` array are associated with the
-      // error.
       {
         suggestions: [
           {
@@ -198,11 +195,8 @@ describe("fromFixture", () => {
     const test = fromFixture(
       stripIndent`
         const name = "alice";
-                     ~~~~~~~ [whoops]
+                     ~~~~~~~ [whoops suggest]
       `,
-      // ☝ Note that if `suggest` isn't specified in the error annotation
-      // _all_ suggestions in the `suggestions` array are associated with the
-      // error.
       {
         suggestions: [
           {
@@ -255,13 +249,8 @@ describe("fromFixture", () => {
         const name = "alice";
                      ~~~~~~~ [whoops suggest 0]
                      ~~~~~~~ [whoops { "identifier": "name" } suggest 1 2]
-                     ~~~~~~~ [whoops suggest]
+                     ~~~~~~~ [whoops]
       `,
-      // ☝ Note that if there are multiple error annotations, `suggest` needs
-      // to be specified in _every_ annotation. It's followed by the indices of
-      // the suggestions - within the `suggestions` array - that are associated
-      // with the error. If an annotation has no suggestion, `suggest` needs to
-      // be specified without being followed by an index.
       {
         suggestions: [
           {
@@ -336,5 +325,26 @@ describe("fromFixture", () => {
       },
     ]);
     expect(test).to.not.have.property("suggestions");
+  });
+
+  it("should throw if suggestions are not annotated", () => {
+    expect(() =>
+      fromFixture(
+        stripIndent`
+        const name = "alice";
+                     ~~~~~~~ [whoops]
+      `,
+        {
+          suggestions: [
+            {
+              messageId: "wat",
+              output: stripIndent`
+              const name = "bob";
+            `,
+            },
+          ],
+        }
+      )
+    ).to.throw(/no 'suggest' annotation found/);
   });
 });

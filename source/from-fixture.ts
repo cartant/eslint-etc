@@ -47,12 +47,13 @@ export function fromFixture<
 
 function getSuggestions<TMessageIds extends string>(
   suggestions: eslint.SuggestionOutput<TMessageIds>[] | null | undefined,
+  suggest: boolean,
   indices: string | undefined
 ): { suggestions?: eslint.SuggestionOutput<TMessageIds>[] } {
-  if (!suggestions || indices === "") {
+  if (!suggestions || !suggest) {
     return {};
   }
-  if (indices === undefined) {
+  if (!indices) {
     return { suggestions };
   }
   return {
@@ -67,9 +68,10 @@ function parseFixture<TMessageIds extends string>(
   suggestions: eslint.SuggestionOutput<TMessageIds>[] | null | undefined
 ) {
   const errorRegExp =
-    /^(?<indent>\s*)(?<error>~+)\s*\[(?<id>\w+)\s*(?<data>.*?)(?:\s*suggest\s*(?<indices>[\d\s]*))?\]\s*$/;
+    /^(?<indent>\s*)(?<error>~+)\s*\[(?<id>\w+)\s*(?<data>.*?)(?:\s*(?<suggest>suggest)\s*(?<indices>[\d\s]*))?\]\s*$/;
   const lines: string[] = [];
   const errors: eslint.TestCaseError<TMessageIds>[] = [];
+  let suggestFound = false;
   fixture.split("\n").forEach((line) => {
     const match = line.match(errorRegExp);
     if (match?.groups) {
@@ -83,12 +85,22 @@ function parseFixture<TMessageIds extends string>(
         endLine: length,
         line: length,
         messageId: match.groups.id as TMessageIds,
-        ...getSuggestions(suggestions, match.groups.indices?.trim()),
+        ...getSuggestions(
+          suggestions,
+          Boolean(match.groups.suggest),
+          match.groups.indices?.trim()
+        ),
       });
+      if (match.groups.suggest) {
+        suggestFound = true;
+      }
     } else {
       lines.push(line);
     }
   });
+  if (suggestions && !suggestFound) {
+    throw new Error("Suggestions specified but no 'suggest' annotation found.");
+  }
   return {
     code: lines.join("\n"),
     errors,
