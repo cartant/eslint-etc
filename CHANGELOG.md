@@ -1,3 +1,16 @@
+<a name="5.0.0"></a>
+## [5.0.0](https://github.com/cartant/eslint-etc/compare/v4.2.5...v5.0.0) (2021-10-16)
+
+## Breaking changes
+
+- Bump to `eslint` version 8 and `@typescript-eslint/experimental-utils` version 5.
+- Change the way the `suggest` annotation works:
+
+    - If `suggest` is specified with no indices, all suggestions are associated with the annotated error.
+    - If `suggest` is specified with indices, suggestions at those indices are associated with the annotated error.
+    - If `suggest` is not specified, no suggestions are associated with the annotated error.
+    - And if `suggestions` are specified without a `suggest` annotation being used, `fromFixture` will throw an error.
+
 <a name="4.2.5"></a>
 ## [4.2.5](https://github.com/cartant/eslint-etc/compare/v4.2.4...v4.2.5) (2021-09-19)
 
