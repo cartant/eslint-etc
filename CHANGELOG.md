@@ -1,3 +1,10 @@
+<a name="5.0.1"></a>
+## [5.0.1](https://github.com/cartant/eslint-etc/compare/v5.0.0...v5.0.1) (2021-10-17)
+
+## Fixes
+
+* Accept `readonly` arrays in `fromFixture`. ([0c2d7e0](https://github.com/cartant/eslint-etc/commit/0c2d7e0))
+
 <a name="5.0.0"></a>
 ## [5.0.0](https://github.com/cartant/eslint-etc/compare/v4.2.5...v5.0.0) (2021-10-16)
 
