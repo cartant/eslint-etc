@@ -9,33 +9,33 @@ export function fromFixture<TMessageIds extends string>(
   fixture: string,
   invalidTestCase?: {
     output?: string;
-    suggestions?: eslint.SuggestionOutput<TMessageIds>[] | null | undefined;
+    suggestions?: readonly eslint.SuggestionOutput<TMessageIds>[] | null;
   }
 ): eslint.InvalidTestCase<TMessageIds, never>;
 
 export function fromFixture<
   TMessageIds extends string,
-  TOptions extends unknown[]
+  TOptions extends readonly unknown[]
 >(
   fixture: string,
   invalidTestCase: Omit<
     eslint.InvalidTestCase<TMessageIds, TOptions>,
     "code" | "errors"
   > & {
-    suggestions?: eslint.SuggestionOutput<TMessageIds>[] | null | undefined;
+    suggestions?: readonly eslint.SuggestionOutput<TMessageIds>[] | null;
   }
 ): eslint.InvalidTestCase<TMessageIds, TOptions>;
 
 export function fromFixture<
   TMessageIds extends string,
-  TOptions extends unknown[]
+  TOptions extends readonly unknown[]
 >(
   fixture: string,
   invalidTestCase: Omit<
     eslint.InvalidTestCase<TMessageIds, TOptions>,
     "code" | "errors"
   > & {
-    suggestions?: eslint.SuggestionOutput<TMessageIds>[] | null | undefined;
+    suggestions?: readonly eslint.SuggestionOutput<TMessageIds>[] | null;
   } = {}
 ): eslint.InvalidTestCase<TMessageIds, TOptions> {
   const { suggestions, ...rest } = invalidTestCase;
@@ -46,26 +46,29 @@ export function fromFixture<
 }
 
 function getSuggestions<TMessageIds extends string>(
-  suggestions: eslint.SuggestionOutput<TMessageIds>[] | null | undefined,
+  suggestions:
+    | readonly eslint.SuggestionOutput<TMessageIds>[]
+    | null
+    | undefined,
   suggest: boolean,
   indices: string | undefined
-): { suggestions?: eslint.SuggestionOutput<TMessageIds>[] } {
+) {
   if (!suggestions || !suggest) {
     return {};
   }
   if (!indices) {
-    return { suggestions };
+    return { suggestions } as const;
   }
   return {
     suggestions: indices
       .split(/\s+/)
       .map((index) => suggestions[Number.parseInt(index, 10)]),
-  };
+  } as const;
 }
 
 function parseFixture<TMessageIds extends string>(
   fixture: string,
-  suggestions: eslint.SuggestionOutput<TMessageIds>[] | null | undefined
+  suggestions?: readonly eslint.SuggestionOutput<TMessageIds>[] | null
 ) {
   const errorRegExp =
     /^(?<indent>\s*)(?<error>~+)\s*\[(?<id>\w+)\s*(?<data>.*?)(?:\s*(?<suggest>suggest)\s*(?<indices>[\d\s]*))?\]\s*$/;
@@ -85,11 +88,12 @@ function parseFixture<TMessageIds extends string>(
         endLine: length,
         line: length,
         messageId: match.groups.id as TMessageIds,
-        ...getSuggestions(
+        // TODO: Remove type assertion once https://github.com/typescript-eslint/typescript-eslint/pull/3844 is available.
+        ...(getSuggestions(
           suggestions,
           Boolean(match.groups.suggest),
           match.groups.indices?.trim()
-        ),
+        ) as eslint.TestCaseError<TMessageIds>["suggestions"]),
       });
       if (match.groups.suggest) {
         suggestFound = true;
