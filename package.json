@@ -75,5 +75,5 @@
     "test:mocha": "mocha build/**/*-spec.js"
   },
   "types": "./dist/cjs/index.d.ts",
-  "version": "5.0.1"
+  "version": "5.1.0"
 }
