@@ -1,3 +1,10 @@
+<a name="5.1.0"></a>
+## [5.1.0](https://github.com/cartant/eslint-etc/compare/v5.0.1...v5.1.0) (2021-11-08)
+
+## Features
+
+* Add `isUnknown` to type services. ([d0eb521](https://github.com/cartant/eslint-etc/commit/d0eb521))
+
 <a name="5.0.1"></a>
 ## [5.0.1](https://github.com/cartant/eslint-etc/compare/v5.0.0...v5.0.1) (2021-10-17)
 
