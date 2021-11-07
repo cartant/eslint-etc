@@ -90,6 +90,7 @@ export function getTypeServices<
     getType,
     isAny: (node: es.Node) => tsutils.isAny(getType(node)),
     isReferenceType: (node: es.Node) => tsutils.isReferenceType(getType(node)),
+    isUnknown: (node: es.Node) => tsutils.isUnknown(getType(node)),
     typeChecker,
   };
 }
