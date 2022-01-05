@@ -16,6 +16,7 @@ I use these utils to implement and test my own ESLint rules. That's their primar
 
 `fromFixture` allows TSLint-like fixtures to be used to test ESlint rules. Using fixtures means that you don't have to specify lines and columns. Instead, you underline the failure locations within the fixture, like this:
 
+<!-- prettier-ignore -->
 ```ts
 {
   invalid: [
@@ -40,6 +41,7 @@ I use these utils to implement and test my own ESLint rules. That's their primar
 
 which is equivalent to the following:
 
+<!-- prettier-ignore -->
 ```ts
 {
   invalid: [{
@@ -103,3 +105,47 @@ const role = 'cto';`,
 Specifying `data` in the fixture is optional. If it's omitted, `data` defaults to `{}`.
 
 The second, optional, argument passed to `fromFixture` can be used to pass additional test case properties - `options` and `output`, etc.
+
+### Suggestions
+
+A `suggestions` array can be passed to `fromFixture` via its second, optional parameter and, when passed, a `suggest` annotation can be used within the fixture, like this:
+
+<!-- prettier-ignore -->
+```ts
+fromFixture(stripIndent`
+  const a = "alice";
+            ~~~~~~~ [foo suggest]
+`, {
+  suggestions: [{
+    messageId: "suggestionForFoo",
+    output: "/* suggestion output */"
+  }]
+}),
+```
+
+And it's possible to include multiple `suggest` annotations and suggestions in a single fixture:
+
+<!-- prettier-ignore -->
+```ts
+fromFixture(stripIndent`
+  const a = "alice";
+            ~~~~~~~ [foo suggest 0]
+  const b = "bob";
+            ~~~~~ [bar suggest 1]
+`, {
+  suggestions: [{
+    messageId: "suggestionForFoo",
+    output: "/* suggestion for foo output */"
+  }, {
+    messageId: "suggestionForBar",
+    output: "/* suggestion for bar output */"
+  }]
+}),
+```
+
+The `suggest` annotations work with the `suggestions` array in the following manner:
+
+-   If `suggest` is specified with no indices, all suggestions are associated with the annotated error.
+-   If `suggest` is specified with indices, suggestions at those indices are associated with the annotated error.
+-   If `suggest` is not specified, no suggestions are associated with the annotated error.
+-   And if `suggestions` are specified without a `suggest` annotation being used, `fromFixture` will throw an error.
