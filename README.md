@@ -118,7 +118,7 @@ fromFixture(stripIndent`
 `, {
   suggestions: [{
     messageId: "suggestionForFoo",
-    output: "/* suggestion output */"
+    output: "/* suggestion output goes here */"
   }]
 }),
 ```
@@ -135,10 +135,10 @@ fromFixture(stripIndent`
 `, {
   suggestions: [{
     messageId: "suggestionForFoo",
-    output: "/* suggestion for foo output */"
+    output: "/* suggestion for foo output goes here */"
   }, {
     messageId: "suggestionForBar",
-    output: "/* suggestion for bar output */"
+    output: "/* suggestion for bar output goes here */"
   }]
 }),
 ```
@@ -149,3 +149,19 @@ The `suggest` annotations work with the `suggestions` array in the following man
 -   If `suggest` is specified with indices, suggestions at those indices are associated with the annotated error.
 -   If `suggest` is not specified, no suggestions are associated with the annotated error.
 -   And if `suggestions` are specified without a `suggest` annotation being used, `fromFixture` will throw an error.
+
+And if the rule has both a fixer and suggestions, you can specify an `output` - for the fixer - in conjunction with a `suggestions` array:
+
+<!-- prettier-ignore -->
+```ts
+fromFixture(stripIndent`
+  const a = "alice";
+            ~~~~~~~ [foo suggest]
+`, {
+  output: "/* fixer output goes here */",
+  suggestions: [{
+    messageId: "suggestionForFoo",
+    output: "/* suggestion output goes here */"
+  }]
+}),
+```
