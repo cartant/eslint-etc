@@ -95,6 +95,12 @@ export function isProperty(node: es.Node): node is es.Property {
   return node.type === "Property";
 }
 
+export function isPrivateIdentifier(
+  node: es.Node
+): node is es.PrivateIdentifier {
+  return node.type === "PrivateIdentifier";
+}
+
 export function isRestElement(node: es.Node): node is es.RestElement {
   return node.type === "RestElement";
 }
