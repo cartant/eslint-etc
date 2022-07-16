@@ -1,3 +1,10 @@
+<a name="5.2.0"></a>
+## [5.2.0](https://github.com/cartant/eslint-etc/compare/v5.1.0...v5.2.0) (2022-07-16)
+
+## Features
+
+* Add `isPrivateIdentifier`. ([779193a](https://github.com/cartant/eslint-etc/commit/779193a))
+
 <a name="5.1.0"></a>
 ## [5.1.0](https://github.com/cartant/eslint-etc/compare/v5.0.1...v5.1.0) (2021-11-08)
 
