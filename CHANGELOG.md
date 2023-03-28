@@ -1,3 +1,10 @@
+<a name="5.2.1"></a>
+## [5.2.1](https://github.com/cartant/eslint-etc/compare/v5.2.0...v5.2.1) (2023-03-29)
+
+## Fixes
+
+* Widen the TypeScript peer dependency. ([6e56ec2](https://github.com/cartant/eslint-etc/commit/6e56ec2))
+
 <a name="5.2.0"></a>
 ## [5.2.0](https://github.com/cartant/eslint-etc/compare/v5.1.0...v5.2.0) (2022-07-16)
 
